@@ -1,3 +1,4 @@
+## BEGIN OF SHARED REGION #############
 FROM ubuntu:trusty
 
 # NOTE: This is a common layer shared with some Dockerfile's
@@ -19,7 +20,8 @@ RUN curl -L https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz |\
     tar -xz &&\
     make -j4 -C src
 
-## END OF SHARED REGION #####
+
+## END OF SHARED REGION ###############
 
 
 # Packages required by Intel projects
