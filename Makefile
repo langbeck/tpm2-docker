@@ -1,10 +1,20 @@
 
+TARGETS:=$(subst /Dockerfile,,$(wildcard */Dockerfile))
 
-TARGETS=inteltss ibmtss ibmacs
 
 .PHONY: all
 all: $(TARGETS)
 
+
 .PHONY: $(TARGETS)
 $(TARGETS):
 	docker build $@ -t tpm2-$@
+
+
+.PHONY: test
+test: $(TEST_TARGETS)
+
+
+.PHONY: $(TEST_TARGETS)
+$(TARGETS:%=test-%): test-%: %
+	docker run --rm -it tpm2-$< --test
