@@ -1,6 +1,9 @@
 
 TARGETS:=$(subst /Dockerfile,,$(wildcard */Dockerfile))
 
+DOCKER_BUILD:=docker build
+DOCKER_BUILD+=--build-arg https_proxy=${https_proxy}
+DOCKER_BUILD+=--build-arg http_proxy=${http_proxy}
 
 .PHONY: all
 all: $(TARGETS)
@@ -8,7 +11,7 @@ all: $(TARGETS)
 
 .PHONY: $(TARGETS)
 $(TARGETS):
-	docker build $@ -t tpm2-$@
+	$(DOCKER_BUILD) $@ -t tpm2:$@
 
 
 .PHONY: test

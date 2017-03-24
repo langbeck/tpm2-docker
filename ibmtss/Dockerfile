@@ -1,6 +1,9 @@
 ## BEGIN OF SHARED REGION #############
 FROM ubuntu:trusty
 
+ARG https_proxy
+ARG http_proxy
+
 # NOTE: This is a common layer shared with some Dockerfile's
 RUN apt-get update &&\
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
