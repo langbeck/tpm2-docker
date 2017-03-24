@@ -26,7 +26,7 @@ ENV PATH=/tpm2/acs:/tpm2/utils:$PATH
 WORKDIR tpm2
 
 
-# IBM's TPM 2.0 TSS (version 930 requires if using ACS version 898)
+# IBM's TPM 2.0 TSS (version 930 required if using ACS version 898)
 RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss930.tar |\
     tar -xz &&\
     make -C utils

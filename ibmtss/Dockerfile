@@ -20,7 +20,10 @@ RUN curl -L https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz |\
     make -j4 -C src
 
 
-# IBM's TPM 2.0 TSS (version 930 requires if using ACS version 898)
+## END OF SHARED REGION #####
+
+
+# IBM's TPM 2.0 TSS (version 930 required if using ACS version 898)
 RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss930.tar |\
     tar -xz &&\
     make -j4 -C utils
