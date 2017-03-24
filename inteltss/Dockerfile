@@ -51,6 +51,7 @@ RUN git clone https://github.com/01org/tpm2.0-tools &&\
     make -j4 &&\
     make install
 
+ENV PATH=/tpm2/src:$PATH
 
 ADD bootstrap.sh /bootstrap.sh
 ENTRYPOINT ["/bootstrap.sh"]
