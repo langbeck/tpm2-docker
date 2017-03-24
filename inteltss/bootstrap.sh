@@ -6,4 +6,10 @@ sleep 0.1
 
 stdbuf -oL -eL resourcemgr -sim 2>&1 1> /resourcemgr.log &
 
+
+if [ "$1" == "--test" ]; then
+	sleep 1
+	exec /tpm2/TPM2.0-TSS/test/tpmclient/tpmclient
+fi
+
 exec bash

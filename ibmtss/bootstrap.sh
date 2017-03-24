@@ -7,4 +7,9 @@ sleep 0.1
 powerup
 startup
 
+if [ "$1" == "--test" ]; then
+	cd /tpm2/utils
+	exec ./reg.sh -a
+fi
+
 exec bash
