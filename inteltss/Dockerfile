@@ -15,6 +15,7 @@ RUN apt-get update &&\
         vim
 
 
+ENV PATH=/tpm2/src:$PATH
 WORKDIR tpm2
 
 
@@ -47,6 +48,7 @@ RUN git clone https://github.com/01org/TPM2.0-TSS &&\
     make -j4 &&\
     make install
 
+
 RUN git clone https://github.com/01org/tpm2.0-tools &&\
     cd tpm2.0-tools &&\
     ./bootstrap &&\
@@ -54,7 +56,7 @@ RUN git clone https://github.com/01org/tpm2.0-tools &&\
     make -j4 &&\
     make install
 
-ENV PATH=/tpm2/src:$PATH
+
 
 ADD bootstrap.sh /bootstrap.sh
 ENTRYPOINT ["/bootstrap.sh"]

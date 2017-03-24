@@ -15,6 +15,7 @@ RUN apt-get update &&\
         vim
 
 
+ENV PATH=/tpm2/src:$PATH
 WORKDIR tpm2
 
 
@@ -30,6 +31,9 @@ RUN curl -L https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz |\
 
 ## BEGIN OF IBM SHARED REGION #########
 
+ENV LD_LIBRARY_PATH=/tpm2/utils:$LD_LIBRARY_PATH
+ENV PATH=/tpm2/utils:$PATH
+
 # IBM's TPM 2.0 TSS (version 930 required if using ACS version 898)
 RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss930.tar |\
     tar -xz &&\
@@ -37,9 +41,6 @@ RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss930.tar |\
 
 ## END OF IBM SHARED REGION ###########
 
-
-ENV LD_LIBRARY_PATH=/tpm2/utils:/tpm2/src
-ENV PATH=/tpm2/utils:/tpm2/src:$PATH
 
 
 ADD bootstrap.sh /bootstrap.sh
