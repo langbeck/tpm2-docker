@@ -21,7 +21,9 @@ elif [ "$1" == "--server" ]; then
 	export ACS_PORT=2323
 	ROOTCERTS=$(mktemp)
 	find /tpm2/utils/certificates/ -name '*.pem' > $ROOTCERTS
-	server -v -root "${ROOTCERTS}"
+
+	shift
+	server -root "${ROOTCERTS}" "$@"
 	exit $?
 fi
 
