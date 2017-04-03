@@ -28,5 +28,5 @@ elif [ "$1" == "--server" ]; then
 fi
 
 
-clientek
+clientek -cakey cakey.pem -capwd rrrr
 exec bash

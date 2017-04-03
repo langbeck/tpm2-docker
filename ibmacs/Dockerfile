@@ -34,8 +34,7 @@ RUN curl -L https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz |\
 ENV LD_LIBRARY_PATH=/tpm2/utils:$LD_LIBRARY_PATH
 ENV PATH=/tpm2/utils:$PATH
 
-# IBM's TPM 2.0 TSS (version 930 required if using ACS version 898)
-RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss930.tar |\
+RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss974.tar.gz |\
     tar -xz &&\
     make -j4 -C utils
 
@@ -60,13 +59,13 @@ ENV LD_LIBRARY_PATH=/tpm2/acs:$LD_LIBRARY_PATH
 ENV PATH=/tpm2/acs:$PATH
 
 # IBM's TPM 2.0 Attestation Client Server
-RUN curl -L https://sourceforge.net/projects/ibmtpm20acs/files/ibmacs898.tar |\
+RUN curl -L https://sourceforge.net/projects/ibmtpm20acs/files/ibmacs976.tar.gz |\
     tar -xz &&\
     mkdir -p /var/www/html/acs &&\
     chmod 777 /var/www/html/acs &&\
     make -C acs
 
-    
+
 # Configure MySQL database
 RUN service mysql start &&\
     echo "create database tpm2;" | mysql &&\
