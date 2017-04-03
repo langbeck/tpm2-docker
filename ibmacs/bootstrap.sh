@@ -28,12 +28,5 @@ elif [ "$1" == "--server" ]; then
 fi
 
 
-exec bash
-
-# Client startup
-openssl genrsa -out cakey.pem -aes256 -passout pass:rrrr 2048 2> /dev/null
-openssl req -new -x509 -key cakey.pem -out cacert.pem -days 3560 -passin pass:rrrr -subj "/C=US/ST=NY/L=Yorktown/O=IBM/CN=EK CA"
-clientek -v
-
-clientenroll -v -ho 172.17.0.2
+clientek
 exec bash
