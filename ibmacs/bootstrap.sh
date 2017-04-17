@@ -29,4 +29,9 @@ fi
 
 
 clientek -cakey cakey.pem -capwd rrrr
-exec bash
+ENTRYPOINT=bash
+if [ -n "${@}" ]; then
+	ENTRYPOINT="${@}"
+fi
+
+exec ${ENTRYPOINT}

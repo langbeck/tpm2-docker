@@ -12,4 +12,9 @@ if [ "$1" == "--test" ]; then
 	exec ./reg.sh -a
 fi
 
-exec bash
+ENTRYPOINT=bash
+if [ -n "${@}" ]; then
+	ENTRYPOINT="${@}"
+fi
+
+exec ${ENTRYPOINT}

@@ -12,4 +12,9 @@ if [ "$1" == "--test" ]; then
 	exec /tpm2/TPM2.0-TSS/test/tpmclient/tpmclient
 fi
 
-exec bash
+ENTRYPOINT=bash
+if [ -n "${@}" ]; then
+	ENTRYPOINT="${@}"
+fi
+
+exec ${ENTRYPOINT}
