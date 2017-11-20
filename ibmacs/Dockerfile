@@ -34,7 +34,7 @@ RUN curl -L https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz |\
 ENV LD_LIBRARY_PATH=/tpm2/utils:$LD_LIBRARY_PATH
 ENV PATH=/tpm2/utils:$PATH
 
-RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss974.tar.gz |\
+RUN curl -L https://sourceforge.net/projects/ibmtpm20tss/files/ibmtss996.tar.gz |\
     tar -xz &&\
     make -j4 -C utils
 
