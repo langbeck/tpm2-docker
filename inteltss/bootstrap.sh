@@ -4,13 +4,13 @@ set -e
 stdbuf -oL -eL tpm_server 2>&1 1> /tpm_server.log &
 sleep 0.1
 
-stdbuf -oL -eL resourcemgr -sim 2>&1 1> /resourcemgr.log &
+# DBus configuration
+mkdir -p /var/run/dbus
+stdbuf -oL -eL dbus-daemon --system --nofork 2>&1 1> /var/log/dbus-daemon.log &
 
+# Access broker daemon
+stdbuf -oL -eL tpm2-abrmd -o -t socket 2>&1 1> /var/log/abrmd.log &
 
-if [ "$1" == "--test" ]; then
-	sleep 1
-	exec /tpm2/TPM2.0-TSS/test/tpmclient/tpmclient
-fi
 
 ENTRYPOINT=${@}
 if [ -z "${ENTRYPOINT}" ]; then
