@@ -1,9 +1,11 @@
 
 TARGETS:=$(subst /Dockerfile,,$(wildcard */Dockerfile))
 
+
 DOCKER_BUILD:=docker build
 DOCKER_BUILD+=--build-arg https_proxy=${https_proxy}
 DOCKER_BUILD+=--build-arg http_proxy=${http_proxy}
+DOCKER_BUILD+=$(BUILD_OPTIONS)
 
 .PHONY: all
 all: $(TARGETS)
